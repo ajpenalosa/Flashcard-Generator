@@ -31,12 +31,11 @@ var basicCards = [
 ];
 
 // Setting up the Cloze Card questions in an array
-
 var clozeCards = [
 
     new ClozeCard( "Nick Fury is responsible for bringing The Avengers together.", "Nick Fury"),
     
-    new ClozeCard( "Chris Evans Is Not Eating in the Postcredits Scene Because He's Wearing a Fake Jaw", "Chris Evans"),
+    new ClozeCard( "Chris Evans is not eating in the post credits scene because he's wearing a fake jaw", "Chris Evans"),
     
     new ClozeCard( "As the Norse God of thunder and lightning, Thor wields one of the greatest weapons ever made, the enchanted hammer Mjolnir.", "Thor"),
     
@@ -141,29 +140,29 @@ function clozeCardGame() {
     inquirer.prompt([
         { // Ask a question from the array at the index of count
             name: "question",
-            message: (count + 1) + ": " + clozeCards[count].front
+            message: (count + 1) + ": " + clozeCards[count].partial
         }
     ]).then(answer => {
 
         // Setting answer and user answer to lower case and comparing them
         // If they match, then console.log "Correct!" and add 1 to the correct score
-        if ( answer.question.toLowerCase() === basicCards[count].back.toLowerCase() ) {
+        if ( answer.question.toLowerCase() === clozeCards[count].cloze.toLowerCase() ) {
             console.log("\r\nCorrect!");
             correct++;
         }
         else {
             // If the user answer is wrong, display the correct answer
             // Add 1 to the wrong answer score
-            console.log("\r\nSorry! The correct answer was: " + basicCards[count].back );
+            console.log("\r\nSorry! The correct answer was: " + clozeCards[count].cloze );
             wrong++;
         }
 
         // Add 1 to the count
         count++;
 
-        // If the count is less than the amount of questions, initialize the basicCardGame function again
-        if ( count < basicCards.length ) {
-            basicCardGame();
+        // If the count is less than the amount of questions, initialize the clozeCards function again
+        if ( count < clozeCards.length ) {
+            clozeCardGame();
         }
 
         else {
